@@ -1,10 +1,9 @@
-const API = "https://hr-ai-system-by-mihai.onrender.com";
 
 async function incarcaStatistici(){
 
 
     const raspuns = await fetch(
-        "${API}/statistici"
+        `${API}/statistici`
     );
 
 
@@ -145,7 +144,7 @@ async function incarcaCandidati() {
     try {
 
         const raspuns = await fetch(
-            "${API}/candidati"
+            `${API}/candidati`
         );
 
 
@@ -325,7 +324,7 @@ async function adaugaCandidat(){
 
 
     await fetch(
-        "${API}/candidati",
+    `${API}/candidati`,
         {
 
             method:"POST",
