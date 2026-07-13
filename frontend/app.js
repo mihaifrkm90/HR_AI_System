@@ -1,8 +1,10 @@
+const API = "https://hr-ai-system-by-mihai.onrender.com";
+
 async function incarcaStatistici(){
 
 
     const raspuns = await fetch(
-        "http://127.0.0.1:8000/statistici"
+        "${API}/statistici"
     );
 
 
@@ -143,7 +145,7 @@ async function incarcaCandidati() {
     try {
 
         const raspuns = await fetch(
-            "http://127.0.0.1:8000/candidati"
+            "${API}/candidati"
         );
 
 
@@ -323,7 +325,7 @@ async function adaugaCandidat(){
 
 
     await fetch(
-        "http://127.0.0.1:8000/candidati",
+        "${API}/candidati",
         {
 
             method:"POST",
@@ -355,7 +357,7 @@ async function veziProfil(nume){
 
 
     const raspuns = await fetch(
-        `http://127.0.0.1:8000/candidati/${nume}`
+        `${API}/candidati/${nume}`
     );
 
 
@@ -371,7 +373,7 @@ async function afiseazaProfil(candidat){
 
 
     const raspuns = await fetch(
-        `http://127.0.0.1:8000/evaluare/${candidat.nume}`
+        `${API}/evaluare/${candidat.nume}`
     );
 
 
@@ -379,14 +381,14 @@ async function afiseazaProfil(candidat){
 
 
     const raspunsIstoric = await fetch(
-    `http://127.0.0.1:8000/istoric/${candidat.nume}`
+    `${API}/istoric/${candidat.nume}`
     );
 
 
     const istoric = await raspunsIstoric.json();
 
     const raspunsComentarii = await fetch(
-    `http://127.0.0.1:8000/comentarii/${candidat.nume}`
+    `${API}/comentarii/${candidat.nume}`
     );
 
 
@@ -400,7 +402,7 @@ async function afiseazaProfil(candidat){
 
 
     const raspunsAnaliza = await fetch(
-        `http://127.0.0.1:8000/analiza/${candidat.nume}`
+        `${API}/analiza/${candidat.nume}`
     );
 
 
@@ -621,7 +623,7 @@ ${e.nivel}
 `).join("")}
 
 
-            <button onclick="incarcaCandidati()">
+            <button type="button" onclick="incarcaStatistici(); incarcaCandidati();">
             Inapoi
             </button>
 
@@ -731,7 +733,7 @@ async function stergeCandidat(nume){
 
 
     await fetch(
-        `http://127.0.0.1:8000/candidati/${nume}`,
+        `${API}/candidati/${nume}`,
         {
             method:"DELETE"
         }
@@ -811,7 +813,7 @@ async function editeazaCandidat(nume){
 
     await fetch(
 
-        `http://127.0.0.1:8000/candidati/${nume}`,
+        `${API}/candidati/${nume}`,
 
         {
 
@@ -955,7 +957,7 @@ async function reevalueaza(nume){
 
     const raspuns = await fetch(
 
-        `http://127.0.0.1:8000/reevaluare/${nume}`,
+        `${API}/reevaluare/${nume}`,
 
         {
 
@@ -983,7 +985,7 @@ async function reevalueaza(nume){
 
     const raspunsProfil = await fetch(
 
-        `http://127.0.0.1:8000/candidati/${nume}`
+        `${API}/candidati/${nume}`
 
     );
 
@@ -997,8 +999,6 @@ async function reevalueaza(nume){
     console.log("REINCARCARE PROFIL DUPA EVALUARE");
 
     await afiseazaProfil(candidatActualizat);
-
-    await incarcaStatistici();
 
 
 }
@@ -1021,7 +1021,7 @@ async function salveazaComentariu(nume){
 
     await fetch(
 
-        `http://127.0.0.1:8000/comentarii/${nume}`,
+        `${API}/comentarii/${nume}`,
 
         {
 
@@ -1066,7 +1066,7 @@ function descarcaRaportPDF(nume){
 
 
     window.open(
-        `http://127.0.0.1:8000/raport_pdf/${nume}`,
+        `${API}/raport_pdf/${nume}`,
         "_blank"
     );
 
