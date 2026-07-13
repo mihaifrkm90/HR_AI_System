@@ -4,8 +4,6 @@ from fastapi.responses import JSONResponse, PlainTextResponse, FileResponse
 
 from reportlab.pdfgen import canvas
 
-from fastapi.middleware.cors import CORSMiddleware
-
 from database import incarca_candidati, salveaza_candidati
 
 from scoring import calculeaza_scor, determina_nivel, determina_recomandare
@@ -16,16 +14,17 @@ from comments import incarca_comentarii, salveaza_comentarii
 
 from datetime import datetime
 
-
-app = FastAPI()
-
+from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app = FastAPI()
 
 
 @app.get("/")
