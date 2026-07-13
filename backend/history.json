@@ -1,0 +1,121 @@
+[
+    {
+        "nume": "Gigi",
+        "scor": 100,
+        "nivel": "High Potential",
+        "recomandare": "Promovare",
+        "data": "2026-07-09 17:50"
+    },
+    {
+        "nume": "Gigi",
+        "scor": 80,
+        "nivel": "Ready Soon",
+        "recomandare": "Promovare",
+        "data": "2026-07-13 11:42"
+    },
+    {
+        "nume": "testAI",
+        "scor": 90,
+        "nivel": "High Potential",
+        "recomandare": "Promovare",
+        "data": "2026-07-13 11:45"
+    },
+    {
+        "nume": "testAI2",
+        "scor": 30,
+        "nivel": "Needs Improvement",
+        "recomandare": "Nu este pregatit",
+        "data": "2026-07-13 20:10"
+    },
+    {
+        "nume": "testAI2",
+        "scor": 80,
+        "nivel": "Ready Soon",
+        "recomandare": "Promovare",
+        "data": "2026-07-13 20:10"
+    },
+    {
+        "nume": "testAI2",
+        "scor": 100,
+        "nivel": "High Potential",
+        "recomandare": "Promovare",
+        "data": "2026-07-13 20:25"
+    },
+    {
+        "nume": "testAI",
+        "scor": 100,
+        "nivel": "High Potential",
+        "recomandare": "Promovare",
+        "data": "2026-07-13 20:30"
+    },
+    {
+        "nume": "test1",
+        "scor": 30,
+        "nivel": "Needs Improvement",
+        "recomandare": "Nu este pregatit",
+        "data": "2026-07-13 20:30"
+    },
+    {
+        "nume": "test2",
+        "scor": 80,
+        "nivel": "Ready Soon",
+        "recomandare": "Promovare",
+        "data": "2026-07-13 20:34"
+    },
+    {
+        "nume": "stefan",
+        "scor": 80,
+        "nivel": "Ready Soon",
+        "recomandare": "Promovare",
+        "data": "2026-07-13 20:39"
+    },
+    {
+        "nume": "andrei",
+        "scor": 80,
+        "nivel": "Ready Soon",
+        "recomandare": "Promovare",
+        "data": "2026-07-13 20:51"
+    },
+    {
+        "nume": "andrei",
+        "scor": 10,
+        "nivel": "Needs Improvement",
+        "recomandare": "Nu este pregatit",
+        "data": "2026-07-13 20:59"
+    },
+    {
+        "nume": "Gigi",
+        "scor": 30,
+        "nivel": "Needs Improvement",
+        "recomandare": "Nu este pregatit",
+        "data": "2026-07-13 21:01"
+    },
+    {
+        "nume": "stefan",
+        "scor": 40,
+        "nivel": "Needs Improvement",
+        "recomandare": "Nu este pregatit",
+        "data": "2026-07-13 21:02"
+    },
+    {
+        "nume": "testAI",
+        "scor": 80,
+        "nivel": "Ready Soon",
+        "recomandare": "Promovare",
+        "data": "2026-07-13 21:05"
+    },
+    {
+        "nume": "Gigi",
+        "scor": 80,
+        "nivel": "Ready Soon",
+        "recomandare": "Promovare",
+        "data": "2026-07-13 21:19"
+    },
+    {
+        "nume": "Gigi",
+        "scor": 30,
+        "nivel": "Needs Improvement",
+        "recomandare": "Nu este pregatit",
+        "data": "2026-07-13 21:24"
+    }
+]

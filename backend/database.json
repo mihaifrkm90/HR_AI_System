@@ -1,0 +1,106 @@
+[
+    {
+        "nume": "Gigi",
+        "experienta": 5,
+        "performanta": 8,
+        "certificari": 6,
+        "istoric": [
+            {
+                "scor": 100,
+                "nivel": "High Potential",
+                "recomandare": "Promovare"
+            }
+        ]
+    },
+    {
+        "nume": "stefan",
+        "experienta": 8,
+        "performanta": 9,
+        "certificari": 3,
+        "istoric": [
+            {
+                "scor": 100,
+                "nivel": "High Potential",
+                "recomandare": "Promovare"
+            }
+        ]
+    },
+    {
+        "nume": "test1",
+        "experienta": 0,
+        "performanta": 0,
+        "certificari": 0,
+        "istoric": [
+            {
+                "scor": 0,
+                "nivel": "Needs Improvement",
+                "recomandare": "Nu este pregatit"
+            }
+        ]
+    },
+    {
+        "nume": "test2",
+        "experienta": 5,
+        "performanta": 8,
+        "certificari": 1,
+        "istoric": [
+            {
+                "scor": 90,
+                "nivel": "High Potential",
+                "recomandare": "Promovare"
+            }
+        ]
+    },
+    {
+        "nume": "test3",
+        "experienta": 2,
+        "performanta": 1,
+        "certificari": 1,
+        "istoric": [
+            {
+                "scor": 30,
+                "nivel": "Needs Improvement",
+                "recomandare": "Nu este pregatit"
+            }
+        ]
+    },
+    {
+        "nume": "andrei",
+        "experienta": 4,
+        "performanta": 7,
+        "certificari": 2,
+        "istoric": [
+            {
+                "scor": 50,
+                "nivel": "Developing",
+                "recomandare": "Evaluare suplimentara"
+            }
+        ]
+    },
+    {
+        "nume": "testAI",
+        "experienta": 7,
+        "performanta": 8,
+        "certificari": 2,
+        "istoric": [
+            {
+                "scor": 90,
+                "nivel": "High Potential",
+                "recomandare": "Promovare"
+            }
+        ]
+    },
+    {
+        "nume": "testAI2",
+        "experienta": 2,
+        "performanta": 2,
+        "certificari": 2,
+        "istoric": [
+            {
+                "scor": 30,
+                "nivel": "Needs Improvement",
+                "recomandare": "Nu este pregatit"
+            }
+        ]
+    }
+]

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>HR Login</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="profil">
+
+
+<h2>HR System Login</h2>
+
+
+<input id="user" placeholder="Username">
+
+
+<input id="pass" type="password" placeholder="Password">
+
+
+<button onclick="login()">
+
+Login
+
+</button>
+
+
+</div>
+
+
+<script>
+
+
+function login(){
+
+
+let user =
+document.getElementById("user").value;
+
+
+let pass =
+document.getElementById("pass").value;
+
+
+
+if(user==="admin" && pass==="admin"){
+
+
+localStorage.setItem(
+"logged",
+"true"
+);
+
+
+localStorage.setItem(
+"loginTime",
+Date.now()
+);
+
+
+window.location="dashboard.html";
+
+
+}
+
+else{
+
+
+alert("Date incorecte");
+
+}
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

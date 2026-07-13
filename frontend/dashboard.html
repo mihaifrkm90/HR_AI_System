@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>HR System</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<script>
+
+if(localStorage.getItem("logged") !== "true"){
+
+    window.location="login.html";
+
+}
+
+</script>
+
+<script>
+
+
+const logged = localStorage.getItem("logged");
+
+const loginTime = localStorage.getItem("loginTime");
+
+
+const durataSesiune = 60 * 60 * 1000; 
+// 1 ora
+
+
+if(
+logged !== "true" ||
+!loginTime ||
+Date.now() - loginTime > durataSesiune
+){
+
+
+localStorage.clear();
+
+window.location="login.html";
+
+
+}
+
+
+</script>
+
+
+<div class="header">
+
+<h1>
+HR AI Talent Management System
+</h1>
+
+<p>
+AI-powered employee evaluation, performance tracking and promotion prediction system.
+</p>
+
+
+<button onclick="logout()">
+Logout
+</button>
+
+</div>
+
+<!-- Dashboard KPI -->
+
+<div id="dashboard">
+
+Se incarca statistici...
+
+</div>
+
+
+
+<!-- Grafic distributie niveluri -->
+
+<h2>Distribuție nivel candidați</h2>
+
+
+<div class="chart-container">
+
+<canvas id="nivelChart"></canvas>
+
+</div>
+
+
+
+<!-- Filtrare si cautare -->
+
+<div class="controale">
+
+
+<select id="filtru" onchange="filtreazaNivel()">
+
+<option value="toate">
+Toti candidatii
+</option>
+
+
+<option value="High Potential">
+High Potential
+</option>
+
+
+<option value="Ready Soon">
+
+Ready Soon
+
+</option>
+
+<option value="Developing">
+
+Developing
+
+</option>
+
+
+<option value="Needs Improvement">
+Needs Improvement
+</option>
+
+
+</select>
+
+
+
+
+<input 
+id="cautare"
+placeholder="Cauta candidat..."
+onkeyup="cautaCandidat()"
+>
+
+
+
+</div>
+
+
+
+
+
+<!-- Lista candidati -->
+
+<div id="lista">
+
+Se incarca...
+
+</div>
+
+
+
+
+
+<!-- Adaugare candidat -->
+
+<h2>Adauga candidat</h2>
+
+
+
+<div class="formular">
+
+
+<input 
+id="nume" 
+placeholder="Nume"
+>
+
+
+<input 
+id="experienta" 
+placeholder="Experienta ani"
+>
+
+
+<input 
+id="performanta" 
+placeholder="Performanta 1-10"
+>
+
+
+<input 
+id="certificari" 
+placeholder="Certificari"
+>
+
+
+
+
+<button onclick="adaugaCandidat()">
+
+Adauga candidat
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- Librarie grafice -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<!-- Codul aplicatiei -->
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
