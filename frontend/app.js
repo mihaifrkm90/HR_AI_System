@@ -423,15 +423,9 @@ async function afiseazaProfil(candidat){
 
 
             <h2>${candidat.nume}</h2>
-            <h2>
-
-    ${candidat.nume}
-
-    </h2>
-
-
     <h2>
 
+    
     <span class="nivel ${evaluare.nivel.replace(/\s/g,'-')}">
 
     ${evaluare.nivel}
@@ -1080,7 +1074,7 @@ function descarcaRaportPDF(nume){
         `${API}/raport_pdf/${nume}?user=${USER}`,
         "_blank"
     );
-    
+
 }
 
 function logout(){
