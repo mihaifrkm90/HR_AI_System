@@ -24,15 +24,12 @@ if(localStorage.getItem("logged") !== "true"){
 
 <script>
 
-
 const logged = localStorage.getItem("logged");
 
 const loginTime = localStorage.getItem("loginTime");
 
-
 const durataSesiune = 60 * 60 * 1000; 
-// 1 ora
-
+// 1 hour
 
 if(
 logged !== "true" ||
@@ -40,14 +37,11 @@ logged !== "true" ||
 Date.now() - loginTime > durataSesiune
 ){
 
-
 localStorage.clear();
 
 window.location="login.html";
 
-
 }
-
 
 </script>
 
@@ -62,7 +56,6 @@ HR AI Talent Management System
 AI-powered employee evaluation, performance tracking and promotion prediction system.
 </p>
 
-
 <button onclick="logout()">
 Logout
 </button>
@@ -73,16 +66,14 @@ Logout
 
 <div id="dashboard">
 
-Se incarca statistici...
+Loading statistics...
 
 </div>
 
 
+<!-- Candidate distribution chart -->
 
-<!-- Grafic distributie niveluri -->
-
-<h2>Distribuție nivel candidați</h2>
-
+<h2>Candidate Level Distribution</h2>
 
 <div class="chart-container">
 
@@ -91,129 +82,93 @@ Se incarca statistici...
 </div>
 
 
-
-<!-- Filtrare si cautare -->
+<!-- Search and filter -->
 
 <div class="controale">
-
 
 <select id="filtru" onchange="filtreazaNivel()">
 
 <option value="toate">
-Toti candidatii
+All Candidates
 </option>
-
 
 <option value="High Potential">
 High Potential
 </option>
 
-
 <option value="Ready Soon">
-
 Ready Soon
-
 </option>
 
 <option value="Developing">
-
 Developing
-
 </option>
-
 
 <option value="Needs Improvement">
 Needs Improvement
 </option>
 
-
 </select>
 
 
-
-
-<input 
+<input
 id="cautare"
-placeholder="Cauta candidat..."
+placeholder="Search candidate..."
 onkeyup="cautaCandidat()"
 >
 
-
-
 </div>
 
 
-
-
-
-<!-- Lista candidati -->
+<!-- Candidate list -->
 
 <div id="lista">
 
-Se incarca...
+Loading candidates...
 
 </div>
 
 
+<!-- Add candidate -->
 
-
-
-<!-- Adaugare candidat -->
-
-<h2>Adauga candidat</h2>
-
-
+<h2>Add Candidate</h2>
 
 <div class="formular">
 
-
-<input 
-id="nume" 
-placeholder="Nume"
+<input
+id="nume"
+placeholder="Candidate Name"
 >
 
-
-<input 
-id="experienta" 
-placeholder="Experienta ani"
+<input
+id="experienta"
+placeholder="Years of Experience"
 >
 
-
-<input 
-id="performanta" 
-placeholder="Performanta 1-10"
+<input
+id="performanta"
+placeholder="Performance (1-10)"
 >
 
-
-<input 
-id="certificari" 
-placeholder="Certificari"
+<input
+id="certificari"
+placeholder="Certifications"
 >
-
-
-
 
 <button onclick="adaugaCandidat()">
 
-Adauga candidat
+Add Candidate
 
 </button>
-
-
 
 </div>
 
 
-
-
-
-
-<!-- Librarie grafice -->
+<!-- Charts -->
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
-<!-- Codul aplicatiei -->
+<!-- Application -->
 
 <script src="app.js"></script>
 

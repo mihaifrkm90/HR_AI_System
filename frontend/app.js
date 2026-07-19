@@ -17,7 +17,7 @@ async function incarcaStatistici(){
 
     <div class="card">
 
-    <h3>Total candidati</h3>
+    <h3>Total Candidates</h3>
 
     <p>${date.total}</p>
 
@@ -37,7 +37,7 @@ async function incarcaStatistici(){
 
     <div class="card">
 
-    <h3>Procent High Potential</h3>
+    <h3>High Potential Rate</h3>
 
     <p>${date.procent_high_potential}%</p>
 
@@ -47,7 +47,7 @@ async function incarcaStatistici(){
 
     <div class="card">
 
-    <h3>Scor mediu</h3>
+    <h3>Average Score</h3>
 
     <p>${date.medie_scor}/100</p>
 
@@ -55,7 +55,7 @@ async function incarcaStatistici(){
 
     <div class="card">
 
-    <h3>Performanta medie</h3>
+    <h3>Average Performance</h3>
 
     <p>${date.medie_performanta}/10</p>
 
@@ -92,7 +92,7 @@ async function incarcaStatistici(){
 
     datasets:[{
 
-    label:"Numar candidati",
+    label:"Candidates",
 
     data:[
 
@@ -154,10 +154,10 @@ async function incarcaCandidati() {
 
     } catch (eroare) {
 
-        console.log("Eroare conectare:", eroare);
+        console.log("Connection error:", eroare);
 
         document.getElementById("lista").innerHTML =
-            "Nu se poate conecta la server.";
+            "Unable to connect to the server.";
 
     }
 
@@ -173,12 +173,12 @@ function afiseazaCandidati(candidati) {
         <table>
 
             <tr>
-                <th>Nume</th>
-                <th>Experienta</th>
-                <th>Performanta</th>
-                <th>Certificari</th>
-                <th>Scor</th>
-                <th>Nivel</th>
+                <th>Name</th>
+                <th>Experience</th>
+                <th>Performance</th>
+                <th>Certifications</th>
+                <th>Score</th>
+                <th>Level</th>
             </tr>
 
     `;
@@ -198,7 +198,7 @@ function afiseazaCandidati(candidati) {
 
 
                 <td>
-                ${candidat.experienta} ani
+                ${candidat.experienta} years
                 </td>
 
 
@@ -259,7 +259,7 @@ async function adaugaCandidat(){
 
     if(nume.trim() === ""){
 
-        alert("Introdu numele candidatului!");
+        alert("Please enter the candidate's name!");
 
         return;
     }
@@ -273,7 +273,7 @@ async function adaugaCandidat(){
         document.getElementById("performanta").value.trim() === "" ||
         document.getElementById("certificari").value.trim() === ""
     ) {
-        alert("Completeaza toate campurile!");
+        alert("Please complete all fields!");
         return;
     }
 
@@ -287,21 +287,21 @@ async function adaugaCandidat(){
 
     if(experienta < 0){
 
-        alert("Experienta nu poate fi negativa!");
+        alert("Experience cannot be negative!");
 
         return;
     }
 
     if(performanta < 0 || performanta > 10){
 
-        alert("Performanta trebuie intre 0 si 10!");
+        alert("Performance must be between 0 and 10!");
 
         return;
     }
 
     if(certificari < 0){
 
-        alert("Certificarile nu pot fi negative!");
+        alert("Certifications cannot be negative!");
 
         return;
     }
@@ -336,7 +336,7 @@ async function adaugaCandidat(){
     );
 
 
-    alert("Candidat adaugat!");
+    alert("Candidate added successfully!");
 
     incarcaStatistici();
 
@@ -364,7 +364,6 @@ async function veziProfil(nume){
 
 }
 
-
 async function afiseazaProfil(candidat){
 
 
@@ -391,7 +390,6 @@ async function afiseazaProfil(candidat){
     const comentarii = await raspunsComentarii.json();
 
 
-    // Sorteaza istoric dupa data (crescator) si defineste ultimaEvaluare
     istoric.sort((a, b) => new Date(a.data) - new Date(b.data));
 
     const ultimaEvaluare = istoric.length > 0 ? istoric[istoric.length - 1] : null;
@@ -432,23 +430,23 @@ async function afiseazaProfil(candidat){
             <hr>
 
 
-            <h3>Date candidat</h3>
+            <h3>Candidate Information</h3>
 
 
             <p>
-            Experienta:
-            ${candidat.experienta} ani
+            Experience:
+            ${candidat.experienta} years
             </p>
 
 
             <p>
-            Performanta:
+            Performance:
             ${candidat.performanta}/10
             </p>
 
 
             <p>
-            Certificari:
+            Certifications:
             ${candidat.certificari}
             </p>
 
@@ -456,18 +454,18 @@ async function afiseazaProfil(candidat){
             <hr>
 
 
-            <h3>Evaluare</h3>
+            <h3>Evaluation</h3>
 
 
             <p>
-            Scor:
+            Score:
             ${evaluare.scor}/100
             </p>
 
 
             <p>
 
-            Nivel:
+            Level:
 
             <span class="nivel ${evaluare.nivel.replace(/\s/g,'-')}">
 
@@ -478,54 +476,54 @@ async function afiseazaProfil(candidat){
             </p>
 
             <p>
-            Recomandare:
+            Recommendation:
             ${evaluare.recomandare}
             </p>
 
             <p>
-            Ultima evaluare:
-            ${ultimaEvaluare ? ultimaEvaluare.data : "Niciodata"}
+            Last Evaluation:
+            ${ultimaEvaluare ? ultimaEvaluare.data : "Never"}
             </p>
 
             <p>
-            Total evaluari:
+            Total Evaluations:
             ${istoric.length}
             </p>
 
 
-        <h3>Evaluare manuala</h3>
+        <h3>Manual Evaluation</h3>
 
-        <input id="evalExp" placeholder="Experienta">
+        <input id="evalExp" placeholder="Experience">
 
-        <input id="evalPerf" placeholder="Performanta">
+        <input id="evalPerf" placeholder="Performance">
 
-        <input id="evalCert" placeholder="Certificari">
+        <input id="evalCert" placeholder="Certifications">
 
 
         <button type="button" onclick="reevalueaza('${candidat.nume}')">
-        Evalueaza acum
+        Evaluate Now
         </button>
 
 
-        <h3>Analiza evolutie</h3>
+        <h3>Performance Analysis</h3>
 
 
 <p>
-Primul scor:
+Initial Score:
 ${analiza.primul_scor || 0}
 </p>
 
 
 <p>
-Ultimul scor:
+Latest Score:
 ${analiza.ultimul_scor || 0}
 </p>
 
 
 <p>
-Diferenta:
+Difference:
 ${analiza.diferenta || 0}
-puncte
+points
 </p>
 
 
@@ -560,7 +558,7 @@ ${analiza.trend}
 
 </p>
 
-<h3>Comentarii HR</h3>
+<h3>HR Notes</h3>
 
 
 ${comentarii.map(c => `
@@ -576,7 +574,7 @@ ${c.comentariu}
 
 <textarea 
 id="comentariuNou"
-placeholder="Adauga nota HR">
+placeholder="Add HR note">
 </textarea>
 
 
@@ -585,11 +583,11 @@ placeholder="Adauga nota HR">
 
 <button onclick="salveazaComentariu('${candidat.nume}')">
 
-Salveaza comentariu
+Save Note
 
 </button>
 
-<h3>Istoric evaluari</h3>
+<h3>Evaluation History</h3>
 
 <div class="chart-container">
     <canvas id="evolutieChart"></canvas>
@@ -604,12 +602,12 @@ ${e.data || ""}
 
 <br>
 
-Scor:
+Score:
 ${e.scor}
 
 <br>
 
-Nivel:
+Level:
 ${e.nivel}
 
 </p>
@@ -621,25 +619,25 @@ ${e.nivel}
 
             <button type="button" 
             onclick="incarcaStatistici(); incarcaCandidati();">
-            Inapoi
+            Back
             </button>
 
 
             <button type="button" 
             onclick="editeazaCandidat('${candidat.nume}')">
-            Editeaza
+            Edit
             </button>
 
 
             <button type="button" 
             onclick="descarcaRaportPDF('${candidat.nume}')">
-            📄 Descarcă raport PDF
+            📄 Download PDF Report
             </button>
 
 
             <button type="button" 
             onclick="stergeCandidat('${candidat.nume}')">
-            Sterge
+            Delete
             </button>
 
 
@@ -652,7 +650,7 @@ ${e.nivel}
 
         const scoruri = istoric.map(e => e.scor);
 
-        const date = istoric.map(e => e.data || "Evaluare");
+        const date = istoric.map(e => e.data || "Evaluation");
 
         if (window.evolutieChartInstance) {
             window.evolutieChartInstance.destroy();
@@ -674,7 +672,7 @@ ${e.nivel}
 
                         {
 
-                            label: "Evolutie scor",
+                            label: "Score Evolution",
 
                             data: scoruri,
 
@@ -721,7 +719,7 @@ async function stergeCandidat(nume){
 
 
     let confirmare = confirm(
-        "Sigur vrei sa stergi candidatul?"
+        "Are you sure you want to delete this candidate?"
     );
 
 
@@ -740,7 +738,7 @@ async function stergeCandidat(nume){
     );
 
 
-    alert("Candidat sters");
+    alert("Candidate deleted");
 
     incarcaStatistici();
 
@@ -752,17 +750,17 @@ async function editeazaCandidat(nume){
 
 
     let experienta = prompt(
-        "Experienta noua:"
+        "New experience:"
     );
 
 
     let performanta = prompt(
-        "Performanta noua:"
+        "New performance:"
     );
 
 
     let certificari = prompt(
-        "Certificari noi:"
+        "New certifications:"
     );
 
 
@@ -779,7 +777,7 @@ async function editeazaCandidat(nume){
 
     if(date.experienta < 0){
 
-    alert("Experienta invalida");
+    alert("Invalid experience");
 
     return;
 
@@ -787,7 +785,7 @@ async function editeazaCandidat(nume){
 
     if(date.performanta < 0 || date.performanta > 10){
 
-        alert("Performanta trebuie intre 0 si 10");
+        alert("Performance must be between 0 and 10");
 
         return;
 
@@ -795,14 +793,14 @@ async function editeazaCandidat(nume){
 
     if(date.certificari < 0){
 
-        alert("Certificari invalide");
+        alert("Invalid certifications");
 
         return;
 
     }
 
     let confirmare = confirm(
-    "Salvezi modificarile?"
+    "Save changes?"
     );
 
     if(!confirmare){
@@ -832,7 +830,7 @@ async function editeazaCandidat(nume){
 
 
     alert(
-        "Candidat actualizat"
+        "Candidate updated"
     );
 
 
@@ -896,7 +894,7 @@ function filtreazaNivel(){
 
 async function reevalueaza(nume){
 
-    console.log("AM INTRAT IN REEVALUARE");
+    console.log("STARTING RE-EVALUATION");
 
     const date = {
 
@@ -917,7 +915,7 @@ async function reevalueaza(nume){
 
     if(date.experienta < 0){
 
-        alert("Experienta invalida");
+        alert("Invalid experience");
 
         return;
 
@@ -926,7 +924,7 @@ async function reevalueaza(nume){
 
     if(date.performanta < 0 || date.performanta > 10){
 
-        alert("Performanta trebuie intre 0 si 10");
+        alert("Performance must be between 0 and 10");
 
         return;
 
@@ -935,7 +933,7 @@ async function reevalueaza(nume){
 
     if(date.certificari < 0){
 
-        alert("Certificari invalide");
+        alert("Invalid certifications");
 
         return;
 
@@ -943,7 +941,7 @@ async function reevalueaza(nume){
 
 
     let confirmare = confirm(
-        "Esti sigur ca doresti o noua evaluare?"
+        "Are you sure you want to perform a new evaluation?"
     );
 
 
@@ -953,7 +951,7 @@ async function reevalueaza(nume){
 
     }
 
-    console.log("TRIMIT EVALUAREA");
+    console.log("SUBMITTING EVALUATION");
 
     const raspuns = await fetch(
 
@@ -978,7 +976,7 @@ async function reevalueaza(nume){
 
 
     alert(
-        "Evaluare noua: " + rezultat.scor
+        "New evaluation score: " + rezultat.scor
     );
 
 
@@ -994,9 +992,9 @@ async function reevalueaza(nume){
 
 
 
-    console.log("INAINTE PROFIL");
+    console.log("BEFORE PROFILE");
 
-    console.log("REINCARCARE PROFIL DUPA EVALUARE");
+    console.log("RELOADING PROFILE AFTER EVALUATION");
 
     await afiseazaProfil(candidatActualizat);
 
@@ -1012,7 +1010,7 @@ async function salveazaComentariu(nume){
 
     if(text.trim() === ""){
 
-        alert("Scrie un comentariu!");
+        alert("Please write a comment!");
 
         return;
 
@@ -1044,7 +1042,7 @@ async function salveazaComentariu(nume){
     );
 
 
-    alert("Comentariu salvat");
+    alert("Comment saved");
 
     veziProfil(nume);
 
