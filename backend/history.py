@@ -25,6 +25,8 @@ def salveaza_istoric(istoric):
 
 def adauga_evaluare(candidat, scor, nivel, recomandare):
 
+    print("SALVARE ISTORIC:", candidat["nume"], scor)
+
     istoric = incarca_istoric()
     ultima_evaluare = None
     for evaluare in reversed(istoric):
