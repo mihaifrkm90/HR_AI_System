@@ -7,7 +7,7 @@ async function apiFetch(url, options={}){
 
     options.headers = options.headers || {};
 
-    options.headers["user"] = USER;
+    options.headers["X-User"] = USER;
 
     return fetch(url, options);
 
@@ -17,7 +17,7 @@ async function apiFetch(url, options={}){
 async function incarcaStatistici(){
 
 
-    const raspuns = await fetch(
+    const raspuns = await apiFetch(
         `${API}/statistici`
     );
 
@@ -153,7 +153,7 @@ async function incarcaCandidati() {
 
     try {
 
-        const raspuns = await fetch(
+        const raspuns = await apiFetch(
             `${API}/candidati`
         );
 
@@ -333,7 +333,7 @@ async function adaugaCandidat(){
 };
 
 
-    await fetch(
+    await apiFetch(
     `${API}/candidati`,
         {
 
@@ -365,7 +365,7 @@ async function adaugaCandidat(){
 async function veziProfil(nume){
 
 
-    const raspuns = await fetch(
+    const raspuns = await apiFetch(
         `${API}/candidati/${nume}`
     );
 
@@ -380,7 +380,7 @@ async function veziProfil(nume){
 async function afiseazaProfil(candidat){
 
 
-    const raspuns = await fetch(
+    const raspuns = await apiFetch(
         `${API}/evaluare/${candidat.nume}`
     );
 
@@ -388,14 +388,14 @@ async function afiseazaProfil(candidat){
     const evaluare = await raspuns.json();
 
 
-    const raspunsIstoric = await fetch(
+    const raspunsIstoric = await apiFetch(
     `${API}/istoric/${candidat.nume}`
     );
 
 
     const istoric = await raspunsIstoric.json();
 
-    const raspunsComentarii = await fetch(
+    const raspunsComentarii = await apiFetch(
     `${API}/comentarii/${candidat.nume}`
     );
 
@@ -408,7 +408,7 @@ async function afiseazaProfil(candidat){
     const ultimaEvaluare = istoric.length > 0 ? istoric[istoric.length - 1] : null;
 
 
-    const raspunsAnaliza = await fetch(
+    const raspunsAnaliza = await apiFetch(
         `${API}/analiza/${candidat.nume}`
     );
 
@@ -743,7 +743,7 @@ async function stergeCandidat(nume){
     }
 
 
-    await fetch(
+    await apiFetch(
         `${API}/candidati/${nume}`,
         {
             method:"DELETE"
@@ -822,7 +822,7 @@ async function editeazaCandidat(nume){
     }
 
 
-    await fetch(
+    await apiFetch(
 
         `${API}/candidati/${nume}`,
 
@@ -966,7 +966,7 @@ async function reevalueaza(nume){
 
     console.log("SUBMITTING EVALUATION");
 
-    const raspuns = await fetch(
+    const raspuns = await apiFetch(
 
         `${API}/reevaluare/${nume}`,
 
@@ -994,7 +994,7 @@ async function reevalueaza(nume){
 
 
 
-    const raspunsProfil = await fetch(
+    const raspunsProfil = await apiFetch(
 
         `${API}/candidati/${nume}`
 
@@ -1030,7 +1030,7 @@ async function salveazaComentariu(nume){
     }
 
 
-    await fetch(
+    await apiFetch(
 
         `${API}/comentarii/${nume}`,
 
@@ -1077,11 +1077,10 @@ function descarcaRaportPDF(nume){
 
 
     window.open(
-        `${API}/raport_pdf/${nume}`,
+        `${API}/raport_pdf/${nume}?user=${USER}`,
         "_blank"
     );
-
-
+    
 }
 
 function logout(){
