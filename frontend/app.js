@@ -619,22 +619,26 @@ ${e.nivel}
 `).join("")}
 
 
-            <button type="button" onclick="incarcaStatistici(); incarcaCandidati();">
+            <button type="button" 
+            onclick="incarcaStatistici(); incarcaCandidati();">
             Inapoi
             </button>
 
 
-            <button type="button" onclick="editeazaCandidat('${candidat.nume}')">
+            <button type="button" 
+            onclick="editeazaCandidat('${candidat.nume}')">
             Editeaza
             </button>
 
 
-            <button type="button" onclick="descarcaRaportPDF('${candidat.nume}')">
+            <button type="button" 
+            onclick="descarcaRaportPDF('${candidat.nume}')">
             📄 Descarcă raport PDF
             </button>
 
 
-            <button type="button" onclick="stergeCandidat('${candidat.nume}')">
+            <button type="button" 
+            onclick="stergeCandidat('${candidat.nume}')">
             Sterge
             </button>
 
