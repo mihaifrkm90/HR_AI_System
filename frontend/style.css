@@ -442,3 +442,46 @@ background:#c0392b;
 color:white;
 
 }
+
+.about-system {
+
+    margin-top:40px;
+
+    padding:25px;
+
+    background:white;
+
+    border-radius:10px;
+
+    max-width:500px;
+
+    margin-left:auto;
+
+    margin-right:auto;
+
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+
+}
+
+
+.about-system h2 {
+
+    text-align:center;
+
+    color:#2c3e50;
+
+}
+
+
+.about-system p {
+
+    line-height:1.6;
+
+}
+
+
+.about-system ul {
+
+    line-height:1.8;
+
+}
