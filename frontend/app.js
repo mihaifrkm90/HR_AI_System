@@ -1067,13 +1067,20 @@ window.addEventListener("DOMContentLoaded", () => {
 
 });
 
-function descarcaRaportPDF(nume){
+async function descarcaRaportPDF(nume){
 
-
-    window.open(
-        `${API}/raport_pdf/${nume}?user=${USER}`,
-        "_blank"
+    const raspuns = await apiFetch(
+        `${API}/raport_pdf/${nume}`
     );
+
+
+    const blob = await raspuns.blob();
+
+
+    const url = window.URL.createObjectURL(blob);
+
+
+    window.open(url, "_blank");
 
 }
 
