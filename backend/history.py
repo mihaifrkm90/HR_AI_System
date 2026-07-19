@@ -1,21 +1,36 @@
 import json
 from datetime import datetime
+import os
+
+print("HISTORY MODULE:", __file__)
+print("WORKING DIRECTORY:", os.getcwd())
 
 
 def incarca_istoric():
 
+    print("CITESC history.json")
+
     try:
+
         with open("history.json", "r") as fisier:
-            return json.load(fisier)
+
+            date = json.load(fisier)
+
+            print("AM GASIT", len(date), "evaluari")
+
+            return date
 
     except FileNotFoundError:
+
+        print("NU EXISTA history.json")
+
         return []
 
 
 
 def salveaza_istoric(istoric):
 
-    print("SALVEZ IN:", "history.json")
+    print("Saving to:", os.path.abspath("history.json"))    
     print("NUMAR EVALUARI:", len(istoric))
 
     with open("history.json", "w") as fisier:
