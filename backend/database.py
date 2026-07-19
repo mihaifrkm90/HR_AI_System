@@ -18,9 +18,21 @@ def incarca_candidati(user):
         return []
 
 
-    with open(fisier, "r") as f:
+    try:
 
-        return json.load(f)
+        with open(fisier, "r") as f:
+
+            continut = f.read()
+
+            if continut.strip() == "":
+                return []
+
+            return json.loads(continut)
+
+
+    except json.JSONDecodeError:
+
+        return []
 
 
 
