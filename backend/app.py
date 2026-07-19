@@ -694,17 +694,44 @@ def raport_pdf(request: Request, nume:str):
         if candidat["nume"].lower() == nume.lower():
 
 
-            scor = calculeaza_scor(
-                candidat["experienta"],
-                candidat["performanta"],
-                candidat["certificari"]
-            )
+            istoric = incarca_istoric()
 
 
-            nivel = determina_nivel(scor)
+            evaluari = []
 
 
-            recomandare = determina_recomandare(scor)
+            for evaluare in istoric:
+
+                if evaluare["nume"].lower() == nume.lower():
+
+                    evaluari.append(evaluare)
+
+
+
+            if evaluari:
+
+                ultima_evaluare = evaluari[-1]
+
+                scor = ultima_evaluare["scor"]
+
+                nivel = ultima_evaluare["nivel"]
+
+                recomandare = ultima_evaluare["recomandare"]
+
+
+            else:
+
+                scor = calculeaza_scor(
+                    candidat["experienta"],
+                    candidat["performanta"],
+                    candidat["certificari"]
+                )
+
+
+                nivel = determina_nivel(scor)
+
+                recomandare = determina_recomandare(scor)
+
 
 
             fisier = f"raport_{nume}.pdf"
@@ -739,44 +766,44 @@ def raport_pdf(request: Request, nume:str):
             )
 
 
-            y = 700
+            y = 680
 
 
             date = [
 
                 f"Candidat: {nume}",
 
-                f"Experienta: {candidat['experienta']} ani",
+                f"Current Experience: {candidat['experienta']} years",
 
-                f"Performanta: {candidat['performanta']}/10",
+                f"Current Performance: {candidat['performanta']}/10",
 
-                f"Certificari: {candidat['certificari']}",
+                f"Current Certifications: {candidat['certificari']}",
 
                 "",
 
-                f"Scor AI: {scor}/100",
+                f"Latest AI Score: {scor}/100",
 
-                f"Nivel: {nivel}",
+                f"Level: {nivel}",
 
-                f"Recomandare: {recomandare}"
+                f"Recommendation: {recomandare}",
 
-                f"Status: {'Promovare recomandata' if scor >= 80 else 'Necesita dezvoltare'}"
+                "",
 
-                f"Data raport: {datetime.now().strftime('%d-%m-%Y %H:%M')}",
+                f"Report date: {datetime.now().strftime('%d-%m-%Y %H:%M')}"
 
             ]
 
 
+
             for linie in date:
-
-
+              
                 pdf.drawString(
                     100,
                     y,
                     linie
                 )
 
-
+                
                 y -= 30
 
 
