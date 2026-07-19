@@ -1,5 +1,18 @@
 const API = "https://hr-ai-system-by-mihai.onrender.com";
 
+const USER =
+localStorage.getItem("user") || "demo";
+
+async function apiFetch(url, options={}){
+
+    options.headers = options.headers || {};
+
+    options.headers["user"] = USER;
+
+    return fetch(url, options);
+
+}
+
 
 async function incarcaStatistici(){
 

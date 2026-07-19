@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 
 from fastapi.responses import JSONResponse, PlainTextResponse, FileResponse
 
@@ -16,15 +16,23 @@ from datetime import datetime
 
 from fastapi.middleware.cors import CORSMiddleware
 
+app = FastAPI()
+
+
+def get_user(request: Request):
+
+    return request.headers.get("user", "demo")
+
+
+from fastapi import Request
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-)
-
-app = FastAPI()
+    )
 
 
 @app.get("/")
@@ -36,9 +44,8 @@ def home():
 
 
 @app.get("/candidati")
-def lista_candidati():
-
-    candidati = incarca_candidati()
+def lista_candidati(request: Request):
+    candidati = incarca_candidati(get_user(request))
 
     rezultate = []
 
@@ -73,7 +80,7 @@ def lista_candidati():
 @app.post("/candidati")
 def adauga_candidat(candidat: dict):
 
-    candidati = incarca_candidati()
+    candidati = incarca_candidati(get_user(request))
 
 
     scor = calculeaza_scor(
@@ -103,7 +110,7 @@ def adauga_candidat(candidat: dict):
     candidati.append(candidat)
 
 
-    salveaza_candidati(candidati)
+    salveaza_candidati(get_user(request), candidati)
 
 
     adauga_evaluare(
@@ -128,7 +135,7 @@ def adauga_candidat(candidat: dict):
 @app.get("/candidati/{nume}")
 def profil_candidat(nume: str):
 
-    candidati = incarca_candidati()
+    candidati = incarca_candidati(get_user(request))
 
     for candidat in candidati:
 
@@ -144,7 +151,7 @@ def profil_candidat(nume: str):
 @app.get("/evaluare/{nume}")
 def evaluare_candidat(nume: str):
 
-    candidati = incarca_candidati()
+    candidati = incarca_candidati(get_user(request))
 
     for candidat in candidati:
 
@@ -176,7 +183,7 @@ def evaluare_candidat(nume: str):
 @app.delete("/candidati/{nume}")
 def sterge_candidat(nume: str):
 
-    candidati = incarca_candidati()
+    candidati = incarca_candidati(get_user(request))
 
     candidati_noi = []
 
@@ -227,7 +234,7 @@ def sterge_candidat(nume: str):
 @app.put("/candidati/{nume}")
 def modifica_candidat(nume: str, date_noi: dict):
 
-    candidati = incarca_candidati()
+    candidati = incarca_candidati(get_user(request))
 
 
     for candidat in candidati:
@@ -267,7 +274,7 @@ def modifica_candidat(nume: str, date_noi: dict):
 
 
 
-            salveaza_candidati(candidati)
+            salveaza_candidati(get_user(request), candidati)
 
 
 
@@ -311,7 +318,7 @@ def istoric_candidat(nume:str):
 @app.get("/nivel/{nume}")
 def nivel_candidat(nume:str):
 
-    candidati = incarca_candidati()
+    candidati = incarca_candidati(get_user(request))
 
     for candidat in candidati:
 
@@ -338,7 +345,7 @@ def nivel_candidat(nume:str):
 @app.get("/statistici")
 def statistici():
 
-    candidati = incarca_candidati()
+    candidati = incarca_candidati(get_user(request))
 
 
     total = len(candidati)
@@ -465,7 +472,7 @@ def statistici():
 @app.get("/raport/{nume}")
 def raport_candidat(nume:str):
 
-    candidati = incarca_candidati()
+    candidati = incarca_candidati(get_user(request))
 
 
     for candidat in candidati:
@@ -565,7 +572,7 @@ STATUS:
 def reevaluare_candidat(nume:str, date:dict):
 
 
-    candidati = incarca_candidati()
+    candidati = incarca_candidati(get_user(request))
 
 
     for candidat in candidati:
@@ -595,7 +602,7 @@ def reevaluare_candidat(nume:str, date:dict):
             )
 
 
-            salveaza_candidati(candidati)
+            salveaza_candidati(get_user(request), candidati)
 
                     
             return {
@@ -671,7 +678,7 @@ def adauga_comentariu(nume:str, date:dict):
 @app.get("/raport_pdf/{nume}")
 def raport_pdf(nume:str):
 
-    candidati = incarca_candidati()
+    candidati = incarca_candidati(get_user(request))
 
 
     for candidat in candidati:

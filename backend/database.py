@@ -1,14 +1,38 @@
 import json
+import os
 
 
-def incarca_candidati():
+def get_database_file(user):
 
-    with open("database.json", "r") as fisier:
-        return json.load(fisier)
-
+    return f"database_{user}.json"
 
 
-def salveaza_candidati(candidati):
 
-    with open("database.json", "w") as fisier:
-        json.dump(candidati, fisier, indent=4)
+def incarca_candidati(user):
+
+    fisier = get_database_file(user)
+
+
+    if not os.path.exists(fisier):
+
+        return []
+
+
+    with open(fisier, "r") as f:
+
+        return json.load(f)
+
+
+
+def salveaza_candidati(user, candidati):
+
+    fisier = get_database_file(user)
+
+
+    with open(fisier, "w") as f:
+
+        json.dump(
+            candidati,
+            f,
+            indent=4
+        )
