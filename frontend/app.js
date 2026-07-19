@@ -1,3 +1,5 @@
+const API = "https://hr-ai-system-by-mihai.onrender.com";
+
 
 async function incarcaStatistici(){
 
