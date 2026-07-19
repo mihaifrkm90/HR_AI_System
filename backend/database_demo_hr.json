@@ -1,0 +1,38 @@
+[
+    {
+        "nume": "Sarah Johnson",
+        "experienta": 8,
+        "performanta": 9,
+        "certificari": 5
+    },
+    {
+        "nume": "Michael Brown",
+        "experienta": 10,
+        "performanta": 10,
+        "certificari": 8
+    },
+    {
+        "nume": "Emma Wilson",
+        "experienta": 3,
+        "performanta": 6,
+        "certificari": 2
+    },
+    {
+        "nume": "David Miller",
+        "experienta": 6,
+        "performanta": 8,
+        "certificari": 4
+    },
+    {
+        "nume": "Sophia Green",
+        "experienta": 2,
+        "performanta": 5,
+        "certificari": 1
+    },
+    {
+        "nume": "Daniel White",
+        "experienta": 9,
+        "performanta": 9,
+        "certificari": 7
+    }
+]
