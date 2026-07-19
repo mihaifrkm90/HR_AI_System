@@ -181,8 +181,7 @@ def evaluare_candidat(request: Request, nume: str):
     }
 
 @app.delete("/candidati/{nume}")
-def sterge_candidat(request: Request, nume: str):
-
+def sterge_candidat(nume: str, request: Request):
 
     candidati = incarca_candidati(get_user(request))
 
