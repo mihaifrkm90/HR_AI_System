@@ -23,6 +23,13 @@ def get_user(request: Request):
 
     return request.headers.get("X-User", "demo")
 
+@app.get("/test-user")
+def test_user(request: Request):
+
+    return {
+        "user": get_user(request)
+    }
+
 
 
 
