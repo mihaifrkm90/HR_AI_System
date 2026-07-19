@@ -15,6 +15,9 @@ def incarca_istoric():
 
 def salveaza_istoric(istoric):
 
+    print("SALVEZ IN:", "history.json")
+    print("NUMAR EVALUARI:", len(istoric))
+
     with open("history.json", "w") as fisier:
         json.dump(
             istoric,
