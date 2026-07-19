@@ -588,6 +588,13 @@ def reevaluare_candidat(request: Request, nume:str, date:dict):
         if candidat["nume"].lower() == nume.lower():
 
 
+            candidat["experienta"] = date["experienta"]
+
+            candidat["performanta"] = date["performanta"]
+
+            candidat["certificari"] = date["certificari"]
+
+
             scor = calculeaza_scor(
                 date["experienta"],
                 date["performanta"],
@@ -803,7 +810,7 @@ def raport_pdf(request: Request, nume:str):
                     linie
                 )
 
-                
+
                 y -= 30
 
 
