@@ -51,30 +51,46 @@ document.getElementById("pass").value;
 
 
 
-if(user==="admin" && pass==="admin"){
+const users = [
+    {
+        username:"admin",
+        password:"admin"
+    },
+    {
+        username:"tester",
+        password:"tester123"
+    },
+    {
+        username:"demo",
+        password:"demo123"
+    }
+];
 
 
-localStorage.setItem(
-"logged",
-"true"
+const validUser = users.find(
+    u => u.username === user && u.password === pass
 );
 
 
-localStorage.setItem(
-"loginTime",
-Date.now()
-);
+if(validUser){
+
+    localStorage.setItem(
+    "logged",
+    "true"
+    );
+
+    localStorage.setItem(
+    "loginTime",
+    Date.now()
+    );
 
 
-window.location="dashboard.html";
-
-
+    window.location="dashboard.html";
 }
 
 else{
 
-
-alert("Date incorecte");
+    alert("Invalid username or password");
 
 }
 
