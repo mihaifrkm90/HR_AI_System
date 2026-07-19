@@ -136,11 +136,6 @@ async function incarcaStatistici(){
 
 async function incarcaCandidati() {
 
-    if(document.querySelector(".profil")){
-        console.log("STOP - sunt deja in profil");
-        return;
-    }
-
     console.trace("!!! INCARCA CANDIDATI A FOST APELATA");
 
     try {
