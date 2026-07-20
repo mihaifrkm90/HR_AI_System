@@ -3,7 +3,7 @@
 
 <head>
 
-<title>HR System</title>
+<title>HR AI System</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -11,6 +11,7 @@
 
 
 <body>
+
 
 <script>
 
@@ -20,19 +21,13 @@ if(localStorage.getItem("logged") !== "true"){
 
 }
 
-</script>
-
-<script>
-
-const logged = localStorage.getItem("logged");
 
 const loginTime = localStorage.getItem("loginTime");
 
-const durataSesiune = 60 * 60 * 1000; 
-// 1 hour
+const durataSesiune = 60 * 60 * 1000;
+
 
 if(
-logged !== "true" ||
 !loginTime ||
 Date.now() - loginTime > durataSesiune
 ){
@@ -46,23 +41,96 @@ window.location="login.html";
 </script>
 
 
-<div class="header">
+
+<div class="app-container">
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+
+<h2>
+HR AI
+</h2>
+
+
+<nav>
+
+
+<button>
+Dashboard
+</button>
+
+
+<button>
+Candidates
+</button>
+
+
+<button>
+AI Insights
+</button>
+
+
+<button>
+Reports
+</button>
+
+
+<button>
+Settings
+</button>
+
+
+</nav>
+
+
+</aside>
+
+
+
+
+
+<!-- MAIN AREA -->
+
+<main class="main-content">
+
+
+
+<header class="top-header">
+
+
+<div>
 
 <h1>
 HR AI Talent Management System
 </h1>
 
+
 <p>
 AI-powered employee evaluation, performance tracking and promotion prediction system.
 </p>
+
+</div>
+
 
 <button onclick="logout()">
 Logout
 </button>
 
-</div>
 
-<!-- Dashboard KPI -->
+</header>
+
+
+
+
+
+<!-- KPI CARDS -->
+
+
+<section>
+
 
 <div id="dashboard">
 
@@ -71,9 +139,23 @@ Loading statistics...
 </div>
 
 
-<!-- Candidate distribution chart -->
+</section>
 
-<h2>Candidate Level Distribution</h2>
+
+
+
+
+
+<!-- CHART -->
+
+
+<section class="panel">
+
+
+<h2>
+Candidate Distribution
+</h2>
+
 
 <div class="chart-container">
 
@@ -82,45 +164,81 @@ Loading statistics...
 </div>
 
 
-<!-- Search and filter -->
+</section>
+
+
+
+
+
+
+
+<!-- SEARCH -->
+
+
+<section class="panel">
+
+
+<h2>
+Candidates
+</h2>
+
+
 
 <div class="controale">
 
-<select id="filtru" onchange="filtreazaNivel()">
+
+<select 
+id="filtru"
+onchange="filtreazaNivel()"
+>
+
 
 <option value="toate">
 All Candidates
 </option>
 
+
 <option value="High Potential">
 High Potential
 </option>
+
 
 <option value="Ready Soon">
 Ready Soon
 </option>
 
+
 <option value="Developing">
 Developing
 </option>
+
 
 <option value="Needs Improvement">
 Needs Improvement
 </option>
 
+
 </select>
 
 
+
+
 <input
+
 id="cautare"
+
 placeholder="Search candidate..."
+
 onkeyup="cautaCandidat()"
+
 >
+
 
 </div>
 
 
-<!-- Candidate list -->
+
+
 
 <div id="lista">
 
@@ -129,31 +247,54 @@ Loading candidates...
 </div>
 
 
-<!-- Add candidate -->
+</section>
 
-<h2>Add Candidate</h2>
+
+
+
+
+
+
+
+
+<!-- ADD CANDIDATE -->
+
+
+<section class="panel">
+
+
+<h2>
+Add New Candidate
+</h2>
+
+
 
 <div class="formular">
+
 
 <input
 id="nume"
 placeholder="Candidate Name"
 >
 
+
 <input
 id="experienta"
 placeholder="Years of Experience"
 >
+
 
 <input
 id="performanta"
 placeholder="Performance (1-10)"
 >
 
+
 <input
 id="certificari"
 placeholder="Certifications"
 >
+
 
 <button onclick="adaugaCandidat()">
 
@@ -161,16 +302,30 @@ Add Candidate
 
 </button>
 
+
+
 </div>
 
 
-<!-- Charts -->
+</section>
+
+
+
+</main>
+
+
+</div>
+
+
+
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- Application -->
 
 <script src="app.js"></script>
+
 
 </body>
 
