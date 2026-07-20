@@ -57,11 +57,6 @@ tr:nth-child(even) {
 
     background-color: #f2f2f2;
 
-}
-
-tr:hover {
-
-    background-color: #ddd;
 
 }
 
@@ -119,9 +114,11 @@ tr {
 
 }
 
-tr:hover {
+tr:hover{
 
-    background:#e8f0fe;
+background:#f5f9ff;
+
+transition:.2s;
 
 }
 
