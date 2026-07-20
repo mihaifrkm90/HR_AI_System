@@ -1,0 +1,23 @@
+[
+    {
+        "nume": "Debug Local",
+        "scor": 30,
+        "nivel": "Needs Improvement",
+        "recomandare": "Nu este pregatit",
+        "data": "2026-07-19 23:41"
+    },
+    {
+        "nume": "Debug Local 3",
+        "scor": 40,
+        "nivel": "Needs Improvement",
+        "recomandare": "Nu este pregatit",
+        "data": "2026-07-19 23:48"
+    },
+    {
+        "nume": "bbb",
+        "scor": 80,
+        "nivel": "Ready Soon",
+        "recomandare": "Promovare",
+        "data": "2026-07-20 19:31"
+    }
+]

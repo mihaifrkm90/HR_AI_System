@@ -1,3 +1,5 @@
+from urllib import request
+
 from fastapi import FastAPI, Request
 
 from fastapi.responses import JSONResponse, PlainTextResponse, FileResponse
@@ -88,6 +90,11 @@ def lista_candidati(request: Request):
 def adauga_candidat(request: Request, candidat: dict):
 
     candidati = incarca_candidati(get_user(request))
+    print("=" * 50)
+    print("USER:", get_user(request))
+    print("DATABASE:", f"database_{get_user(request)}.json")
+    print("HISTORY:", f"history_{get_user(request)}.json")
+    print("=" * 50)
 
 
     scor = calculeaza_scor(
@@ -121,6 +128,7 @@ def adauga_candidat(request: Request, candidat: dict):
 
 
     adauga_evaluare(
+        get_user(request),
         candidat,
         scor,
         nivel,
@@ -213,7 +221,7 @@ def sterge_candidat(nume: str, request: Request):
 
         salveaza_candidati(get_user(request), candidati_noi)
         
-        istoric = incarca_istoric()
+        istoric = incarca_istoric(get_user(request))
 
 
         istoric_nou = []
@@ -227,7 +235,10 @@ def sterge_candidat(nume: str, request: Request):
 
 
 
-        salveaza_istoric(istoric_nou)
+        salveaza_istoric(
+            get_user(request),
+            istoric_nou
+        )
 
         return {
             "mesaj": "Candidat sters"
@@ -273,11 +284,12 @@ def modifica_candidat(request: Request, nume: str, date_noi: dict):
 
 
             adauga_evaluare(
+                get_user(request),
                 candidat,
                 scor,
                 nivel,
                 recomandare
-            )
+        )
 
 
 
@@ -304,10 +316,9 @@ def modifica_candidat(request: Request, nume: str, date_noi: dict):
 }
 
 @app.get("/istoric/{nume}")
-def istoric_candidat(nume:str):
+def istoric_candidat(request: Request, nume: str):
 
-    istoric = incarca_istoric()
-
+    istoric = incarca_istoric(get_user(request))
 
     rezultate = []
 
@@ -609,10 +620,11 @@ def reevaluare_candidat(request: Request, nume:str, date:dict):
 
 
             adauga_evaluare(
-            candidat,
-            scor,
-            nivel,
-            recomandare
+                get_user(request),
+                candidat,
+                scor,
+                nivel,
+                recomandare
             )
 
 
@@ -638,9 +650,12 @@ def reevaluare_candidat(request: Request, nume:str, date:dict):
     }
 
 @app.get("/analiza/{nume}")
-def analiza_candidat(nume:str):
+def analiza_candidat(request: Request, nume: str):
 
-    rezultat = obtine_analiza_evolutie(nume)
+    rezultat = obtine_analiza_evolutie(
+    get_user(request),
+    nume
+    )
 
     return rezultat
 
@@ -701,7 +716,7 @@ def raport_pdf(request: Request, nume:str):
         if candidat["nume"].lower() == nume.lower():
 
 
-            istoric = incarca_istoric()
+            istoric = incarca_istoric(get_user(request))
 
 
             evaluari = []

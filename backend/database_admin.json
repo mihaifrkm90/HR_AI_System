@@ -1,0 +1,54 @@
+[
+    {
+        "nume": "Debug Local",
+        "experienta": 2,
+        "performanta": 2,
+        "certificari": 2,
+        "istoric": [
+            {
+                "scor": 30,
+                "nivel": "Needs Improvement",
+                "recomandare": "Nu este pregatit"
+            }
+        ]
+    },
+    {
+        "nume": "Debug Local 2",
+        "experienta": 2,
+        "performanta": 2,
+        "certificari": 2,
+        "istoric": [
+            {
+                "scor": 30,
+                "nivel": "Needs Improvement",
+                "recomandare": "Nu este pregatit"
+            }
+        ]
+    },
+    {
+        "nume": "Debug Local 3",
+        "experienta": 3,
+        "performanta": 3,
+        "certificari": 3,
+        "istoric": [
+            {
+                "scor": 40,
+                "nivel": "Needs Improvement",
+                "recomandare": "Nu este pregatit"
+            }
+        ]
+    },
+    {
+        "nume": "bbb",
+        "experienta": 5,
+        "performanta": 5,
+        "certificari": 5,
+        "istoric": [
+            {
+                "scor": 80,
+                "nivel": "Ready Soon",
+                "recomandare": "Promovare"
+            }
+        ]
+    }
+]

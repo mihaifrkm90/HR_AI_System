@@ -1,70 +1,58 @@
 import json
-from datetime import datetime
 import os
-
-print("HISTORY MODULE:", __file__)
-print("WORKING DIRECTORY:", os.getcwd())
+from datetime import datetime
 
 
-def incarca_istoric():
+def get_history_file(user):
 
-    print("CITESC history.json")
+    return f"history_{user}.json"
+
+
+
+def incarca_istoric(user):
+
+    fisier = get_history_file(user)
+
+    if not os.path.exists(fisier):
+
+        return []
+
 
     try:
 
-        with open("history.json", "r") as fisier:
+        with open(fisier, "r") as file:
 
-            date = json.load(fisier)
+            continut = file.read()
 
-            print("AM GASIT", len(date), "evaluari")
+            if continut.strip() == "":
+                return []
 
-            return date
+            return json.loads(continut)
 
-    except FileNotFoundError:
 
-        print("NU EXISTA history.json")
+    except json.JSONDecodeError:
 
         return []
 
 
 
-def salveaza_istoric(istoric):
+def salveaza_istoric(user, istoric):
 
-    print("Saving to:", os.path.abspath("history.json"))    
-    print("NUMAR EVALUARI:", len(istoric))
+    fisier = get_history_file(user)
 
-    with open("history.json", "w") as fisier:
+    with open(fisier, "w") as file:
+        
         json.dump(
             istoric,
-            fisier,
+            file,
             indent=4
         )
 
 
-def adauga_evaluare(candidat, scor, nivel, recomandare):
 
-    print("SALVARE ISTORIC:", candidat["nume"], scor)
+def adauga_evaluare(user, candidat, scor, nivel, recomandare):
 
-    istoric = incarca_istoric()
-    ultima_evaluare = None
-    for evaluare in reversed(istoric):
-
-        if evaluare["nume"].lower() == candidat["nume"].lower():
-
-            ultima_evaluare = evaluare
-
-            break
-
-
-    if ultima_evaluare:
-
-        if (
-            ultima_evaluare["scor"] == scor
-            and ultima_evaluare["nivel"] == nivel
-            and ultima_evaluare["recomandare"] == recomandare
-        ):
-
-            return
+    istoric = incarca_istoric(user)
 
     evaluare = {
         "nume": candidat["nume"],
@@ -72,44 +60,23 @@ def adauga_evaluare(candidat, scor, nivel, recomandare):
         "nivel": nivel,
         "recomandare": recomandare,
         "data": datetime.now().strftime("%Y-%m-%d %H:%M")
-
+        
     }
 
     istoric.append(evaluare)
 
-    salveaza_istoric(istoric)
+    salveaza_istoric(
+        user,
+        istoric
+    )
 
 
-def afiseaza_istoric(nume):
 
-    istoric = incarca_istoric()
-
-    gasit = False
-
-    print("\n--- Istoric evaluari ---")
+def obtine_analiza_evolutie(user, nume):
 
 
-    for evaluare in istoric:
+    istoric = incarca_istoric(user)
 
-        if evaluare["nume"].lower() == nume.lower():
-
-            print("\nCandidat:", evaluare["nume"])
-            print("Scor:", evaluare["scor"])
-            print("Nivel:", evaluare["nivel"])
-            print("Recomandare:", evaluare["recomandare"])
-        if "data" in evaluare:
-            print("Data:", evaluare["data"])
-
-            gasit = True
-
-
-    if not gasit:
-
-        print("Nu exista istoric pentru acest candidat.")
-
-def analiza_evolutie(nume):
-
-    istoric = incarca_istoric()
 
     scoruri = []
 
@@ -123,69 +90,17 @@ def analiza_evolutie(nume):
             )
 
 
-    print("\n--- Analiza evolutie ---")
-
-
-    if len(scoruri) < 2:
-
-        print("Nu exista suficiente evaluari pentru analiza.")
-
-        return
-
-
-    primul_scor = scoruri[0]
-    ultimul_scor = scoruri[-1]
-
-
-    diferenta = ultimul_scor - primul_scor
-
-
-    print("Primul scor:", primul_scor)
-    print("Ultimul scor:", ultimul_scor)
-
-
-    if diferenta > 0:
-
-        print("Evolutie: +", diferenta)
-        print("Trend: Pozitiv")
-
-
-    elif diferenta < 0:
-
-        print("Evolutie:", diferenta)
-        print("Trend: Negativ")
-
-
-    else:
-
-        print("Evolutie: 0")
-        print("Trend: Stabil")
-
-        
-def obtine_analiza_evolutie(nume):
-
-    istoric = incarca_istoric()
-
-    scoruri = []
-
-
-    for evaluare in istoric:
-
-        if evaluare["nume"].lower() == nume.lower():
-
-            scoruri.append(evaluare["scor"])
-
-
     if len(scoruri) == 0:
 
         return {
-            "eroare": "Nu exista evaluari"
+            "eroare":"Nu exista evaluari"
         }
 
 
     primul_scor = scoruri[0]
 
     ultimul_scor = scoruri[-1]
+
 
     diferenta = ultimul_scor - primul_scor
 
