@@ -18,6 +18,8 @@ from datetime import datetime
 
 from fastapi.middleware.cors import CORSMiddleware
 
+from insights import generate_candidate_insights
+
 app = FastAPI()
 
 
@@ -193,6 +195,23 @@ def evaluare_candidat(request: Request, nume: str):
 
     return {
         "eroare": "Candidat negasit"
+    }
+
+@app.get("/insights/{nume}")
+def get_candidate_insights(request: Request, nume: str):
+
+    candidates = incarca_candidati(get_user(request))
+
+    for candidate in candidates:
+
+        if candidate["nume"].lower() == nume.lower():
+
+            return generate_candidate_insights(candidate)
+
+    return {
+
+        "error": "Candidate not found"
+
     }
 
 @app.delete("/candidati/{nume}")
