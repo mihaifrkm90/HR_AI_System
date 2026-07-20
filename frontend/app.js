@@ -1054,6 +1054,88 @@ async function salveazaComentariu(nume){
 
 }
 
+function filtreazaAvansat(){
+
+let rezultat = [...listaCompleta];
+
+
+
+const text = document
+.getElementById("cautare")
+.value
+.toLowerCase();
+
+
+
+const nivel =
+document.getElementById("filtru").value;
+
+
+
+const experienta =
+document.getElementById("filtruExperienta").value;
+
+
+
+const scor =
+document.getElementById("filtruScor").value;
+
+
+
+
+
+if(text !== ""){
+
+rezultat = rezultat.filter(c =>
+
+c.nume.toLowerCase().includes(text)
+
+);
+
+}
+
+
+
+if(nivel !== "toate"){
+
+rezultat = rezultat.filter(c =>
+
+c.nivel === nivel
+
+);
+
+}
+
+
+
+if(experienta !== "toate"){
+
+rezultat = rezultat.filter(c =>
+
+c.experienta >= Number(experienta)
+
+);
+
+}
+
+
+
+if(scor !== "toate"){
+
+rezultat = rezultat.filter(c =>
+
+c.scor >= Number(scor)
+
+);
+
+}
+
+
+
+afiseazaCandidati(rezultat);
+
+}
+
 window.addEventListener("DOMContentLoaded", () => {
 
     if(document.getElementById("dashboard")){
