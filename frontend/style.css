@@ -691,3 +691,42 @@ font-weight:bold;
 border-left:6px solid #16a34a;
 
 }
+
+/* AI INSIGHTS */
+
+.ai-insights{
+
+background:#f8fafc;
+
+padding:20px;
+
+border-radius:12px;
+
+border-left:5px solid #2563eb;
+
+margin-top:20px;
+
+}
+
+
+.ai-insights h4{
+
+color:#1f2937;
+
+margin-bottom:8px;
+
+}
+
+
+.ai-insights ul{
+
+padding-left:20px;
+
+}
+
+
+.ai-insights li{
+
+margin-bottom:8px;
+
+}

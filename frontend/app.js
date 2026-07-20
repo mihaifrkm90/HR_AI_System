@@ -425,11 +425,20 @@ async function afiseazaProfil(candidat){
 
 
     const raspunsAnaliza = await apiFetch(
-        `${API}/analiza/${candidat.nume}`
+    `${API}/analiza/${candidat.nume}`
     );
 
 
     const analiza = await raspunsAnaliza.json();
+
+
+
+    const raspunsInsights = await apiFetch(
+        `${API}/insights/${candidat.nume}`
+    );
+
+
+    const insights = await raspunsInsights.json();
 
 
     document.getElementById("lista").innerHTML = `
@@ -527,6 +536,70 @@ async function afiseazaProfil(candidat){
         Evaluate Now
         </button>
 
+        <h3>AI Candidate Insights</h3>
+
+
+        <div class="ai-insights">
+
+
+        <h4>Strengths</h4>
+
+        <ul>
+
+        ${insights.strengths.map(item => `
+
+        <li>
+        ${item}
+        </li>
+
+        `).join("")}
+
+        </ul>
+
+
+
+
+        <h4>Risks</h4>
+
+        <ul>
+
+        ${insights.risks.map(item => `
+
+        <li>
+        ${item}
+        </li>
+
+        `).join("")}
+
+        </ul>
+
+
+
+
+        <h4>Development Recommendations</h4>
+
+        <ul>
+
+        ${insights.development.map(item => `
+
+        <li>
+        ${item}
+        </li>
+
+        `).join("")}
+
+        </ul>
+
+
+
+        <h4>Promotion Readiness</h4>
+
+        <p>
+        ${insights.promotion}
+        </p>
+
+
+        </div>
 
         <h3>Performance Analysis</h3>
 
