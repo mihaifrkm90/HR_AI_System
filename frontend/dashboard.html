@@ -58,28 +58,24 @@ HR AI
 <nav>
 
 
-<button>
+<button onclick="mergiLa('dashboardSection')">
 Dashboard
 </button>
 
-
-<button>
+<button onclick="mergiLa('candidateSection')">
 Candidates
 </button>
 
-
-<button>
-AI Insights
+<button onclick="mergiLa('analyticsSection')">
+Analytics
 </button>
 
-
-<button>
-Reports
+<button onclick="mergiLa('addCandidateSection')">
+Add Candidate
 </button>
 
-
-<button>
-Settings
+<button onclick="window.scrollTo({top:0,behavior:'smooth'})">
+Top
 </button>
 
 
@@ -129,8 +125,7 @@ Logout
 <!-- KPI CARDS -->
 
 
-<section>
-
+<section id="dashboardSection">
 
 <div id="dashboard">
 
@@ -149,8 +144,7 @@ Loading statistics...
 <!-- CHART -->
 
 
-<section class="panel">
-
+<section class="panel" id="analyticsSection">
 
 <h2>
 Candidate Distribution
@@ -175,7 +169,7 @@ Candidate Distribution
 <!-- SEARCH -->
 
 
-<section class="panel">
+<section class="panel" id="candidateSection">
 
 
 <h2>
@@ -270,6 +264,26 @@ All Scores
 
 </select>
 
+<select id="sortare" onchange="sorteazaCandidati()">
+
+<option value="nume">
+Sort by Name
+</option>
+
+<option value="scor">
+Sort by Score
+</option>
+
+<option value="experienta">
+Sort by Experience
+</option>
+
+<option value="performanta">
+Sort by Performance
+</option>
+
+</select>
+
 
 <input
 
@@ -307,7 +321,7 @@ Loading candidates...
 <!-- ADD CANDIDATE -->
 
 
-<section class="panel">
+<section class="panel" id="addCandidateSection">
 
 
 <h2>

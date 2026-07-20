@@ -682,3 +682,12 @@ border-radius:12px;
 box-shadow:0 3px 12px rgba(0,0,0,0.08);
 
 }
+.topCandidate{
+
+background:#e8fff0 !important;
+
+font-weight:bold;
+
+border-left:6px solid #16a34a;
+
+}

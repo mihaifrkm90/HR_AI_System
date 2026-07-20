@@ -197,12 +197,29 @@ function afiseazaCandidati(candidati) {
 
 
 
-    candidati.forEach(candidat => {
+    const scorMaxim =
+Math.max(...candidati.map(c=>c.scor));
+
+candidati.forEach(candidat => {
 
 
         tabel += `
 
-            <tr onclick="veziProfil('${candidat.nume}')">
+            <tr
+
+            class="${
+            candidat.scor===scorMaxim
+            ?
+
+            'topCandidate'
+
+            :
+
+            ''
+
+            }"
+
+            onclick="veziProfil('${candidat.nume}')">
 
                 <td>
                 ${candidat.nume}
@@ -1133,6 +1150,59 @@ c.scor >= Number(scor)
 
 
 afiseazaCandidati(rezultat);
+
+}
+
+function sorteazaCandidati(){
+
+const criteriu =
+document.getElementById("sortare").value;
+
+let rezultat = [...listaCompleta];
+
+switch(criteriu){
+
+case "scor":
+
+rezultat.sort((a,b)=>b.scor-a.scor);
+
+break;
+
+case "experienta":
+
+rezultat.sort((a,b)=>b.experienta-a.experienta);
+
+break;
+
+case "performanta":
+
+rezultat.sort((a,b)=>b.performanta-a.performanta);
+
+break;
+
+default:
+
+rezultat.sort((a,b)=>
+
+a.nume.localeCompare(b.nume)
+
+);
+
+}
+
+afiseazaCandidati(rezultat);
+
+}
+
+function mergiLa(id){
+
+document
+.getElementById(id)
+.scrollIntoView({
+
+behavior:"smooth"
+
+});
 
 }
 
