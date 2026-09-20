@@ -1,12 +1,13 @@
 from scoring import (
-    calculeaza_scor,
-    determina_nivel
+    calculate_score,
+    determine_level,
+    determine_recommendation
 )
 
 
 def generate_candidate_insights(candidate):
 
-    score = calculeaza_scor(
+    score = calculate_score(
         candidate["experienta"],
         candidate["performanta"],
         candidate["certificari"]

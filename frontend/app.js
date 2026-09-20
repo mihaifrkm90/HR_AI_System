@@ -411,6 +411,13 @@ async function afiseazaProfil(candidat){
 
     const istoric = await raspunsIstoric.json();
 
+
+    const raspunsExplanation = await apiFetch(
+    `${API}/explanation/${candidat.nume}`
+    );
+
+    const explanation = await raspunsExplanation.json();
+
     const raspunsComentarii = await apiFetch(
     `${API}/comentarii/${candidat.nume}`
     );
@@ -488,7 +495,7 @@ async function afiseazaProfil(candidat){
 
             <h3>Evaluation</h3>
 
-
+            
             <p>
             Score:
             ${evaluare.scor}/100
@@ -511,6 +518,44 @@ async function afiseazaProfil(candidat){
             Recommendation:
             ${evaluare.recomandare}
             </p>
+
+            <h3>
+            Score Explanation
+            </h3>
+
+
+            <ul>
+
+            ${explanation.explanation.map(item => `
+
+            <li>
+
+            <li>
+
+            <strong>
+            ${item.factor}
+            </strong>
+
+            <br>
+
+            +${item.points} points
+
+            <br>
+
+            <small>
+            ${item.reason}
+            </small>
+
+            </li>
+
+            <br>
+
+
+            </li>
+
+            `).join("")}
+
+            </ul>
 
             <p>
             Last Evaluation:
@@ -628,7 +673,7 @@ points
 Trend:
 
 <span class="${
-analiza.trend==="Pozitiv"
+analiza.trend==="Positive"
 
 ?
 

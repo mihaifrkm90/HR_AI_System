@@ -1,0 +1,44 @@
+[
+    {
+        "nume": "Sarah Johnson",
+        "scor": 100,
+        "nivel": "High Potential",
+        "recomandare": "Promotion Recommended",
+        "data": "2026-09-20 12:10"
+    },
+    {
+        "nume": "Michael Brown",
+        "scor": 100,
+        "nivel": "High Potential",
+        "recomandare": "Promotion Recommended",
+        "data": "2026-09-20 12:10"
+    },
+    {
+        "nume": "Emma Wilson",
+        "scor": 50,
+        "nivel": "Developing",
+        "recomandare": "Additional Evaluation Required",
+        "data": "2026-09-20 12:10"
+    },
+    {
+        "nume": "David Miller",
+        "scor": 100,
+        "nivel": "High Potential",
+        "recomandare": "Promotion Recommended",
+        "data": "2026-09-20 12:10"
+    },
+    {
+        "nume": "Sophia Green",
+        "scor": 50,
+        "nivel": "Developing",
+        "recomandare": "Additional Evaluation Required",
+        "data": "2026-09-20 12:10"
+    },
+    {
+        "nume": "Daniel White",
+        "scor": 100,
+        "nivel": "High Potential",
+        "recomandare": "Promotion Recommended",
+        "data": "2026-09-20 12:10"
+    }
+]

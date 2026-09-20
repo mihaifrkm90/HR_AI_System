@@ -1,16 +1,16 @@
 import json
 
 
-def incarca_config():
+def load_config():
 
     with open("config.json", "r") as fisier:
         return json.load(fisier)
 
 
 
-def calculeaza_scor(experienta, performanta, certificari):
+def calculate_score(experienta, performanta, certificari):
 
-    config = incarca_config()
+    config = load_config()
 
     scor = 0
 
@@ -37,7 +37,7 @@ def calculeaza_scor(experienta, performanta, certificari):
 
     return int(scor)
 
-def determina_nivel(scor):
+def determine_level(scor):
 
     if scor >= 90:
         return "High Potential"
@@ -51,32 +51,38 @@ def determina_nivel(scor):
     else:
         return "Needs Improvement"
 
-def determina_recomandare(scor):
+def determine_recommendation(score):
 
-    if scor >= 80:
-        return "Promovare"
+    if score >= 80:
+        return "Promotion Recommended"
 
-    elif scor >= 50:
-        return "Evaluare suplimentara"
+    elif score >= 50:
+        return "Additional Evaluation Required"
 
     else:
-        return "Nu este pregatit"
+        return "Not Ready for Promotion"
     
-def evalueaza_profil(candidat):
+def evaluate_profile(candidate):
 
-    scor = calculeaza_scor(
-        candidat["experienta"],
-        candidat["performanta"],
-        candidat["certificari"]
+    score = calculate_score(
+        candidate["experienta"],
+        candidate["performanta"],
+        candidate["certificari"]
     )
 
-    nivel = determina_nivel(scor)
 
-    recomandare = determina_recomandare(scor)
+    level = determine_level(score)
+
+
+    recommendation = determine_recommendation(score)
 
 
     return {
-        "scor": scor,
-        "nivel": nivel,
-        "recomandare": recomandare
+
+        "score": score,
+
+        "level": level,
+
+        "recommendation": recommendation
+
     }

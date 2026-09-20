@@ -107,15 +107,15 @@ def obtine_analiza_evolutie(user, nume):
 
     if diferenta > 0:
 
-        trend = "Pozitiv"
+        trend = "Positive"
 
     elif diferenta < 0:
 
-        trend = "Negativ"
+        trend = "Negative"
 
     else:
 
-        trend = "Stabil"
+        trend = "Stable"
 
 
 

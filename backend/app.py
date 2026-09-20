@@ -8,7 +8,7 @@ from reportlab.pdfgen import canvas
 
 from database import incarca_candidati, salveaza_candidati
 
-from scoring import calculeaza_scor, determina_nivel, determina_recomandare
+from scoring import calculate_score, determine_level, determine_recommendation
 
 from history import incarca_istoric, adauga_evaluare, salveaza_istoric, obtine_analiza_evolutie
 
@@ -19,6 +19,8 @@ from datetime import datetime
 from fastapi.middleware.cors import CORSMiddleware
 
 from insights import generate_candidate_insights
+
+from explanation import explain_score
 
 app = FastAPI()
 
@@ -63,14 +65,14 @@ def lista_candidati(request: Request):
 
     for candidat in candidati:
 
-        scor = calculeaza_scor(
+        scor = calculate_score(
             candidat["experienta"],
             candidat["performanta"],
             candidat["certificari"]
         )
 
 
-        nivel = determina_nivel(scor)
+        nivel = determine_level(scor)
 
 
         candidat_nou = candidat.copy()
@@ -99,17 +101,17 @@ def adauga_candidat(request: Request, candidat: dict):
     print("=" * 50)
 
 
-    scor = calculeaza_scor(
+    scor = calculate_score(
         candidat["experienta"],
         candidat["performanta"],
         candidat["certificari"]
     )
 
 
-    nivel = determina_nivel(scor)
+    nivel = determine_level(scor)
 
 
-    recomandare = determina_recomandare(scor)
+    recomandare = determine_recommendation(scor)
 
 
     candidat["istoric"] = [
@@ -174,15 +176,15 @@ def evaluare_candidat(request: Request, nume: str):
 
         if candidat["nume"].lower() == nume.lower():
 
-            scor = calculeaza_scor(
+            scor = calculate_score(
                 candidat["experienta"],
                 candidat["performanta"],
                 candidat["certificari"]
             )
 
-            nivel = determina_nivel(scor)
+            nivel = determine_level(scor)
 
-            recomandare = determina_recomandare(scor)
+            recomandare = determine_recommendation(scor)
 
 
             return {
@@ -288,17 +290,17 @@ def modifica_candidat(request: Request, nume: str, date_noi: dict):
 
 
 
-            scor = calculeaza_scor(
+            scor = calculate_score(
                 candidat["experienta"],
                 candidat["performanta"],
                 candidat["certificari"]
             )
 
 
-            nivel = determina_nivel(scor)
+            nivel = determine_level(scor)
 
 
-            recomandare = determina_recomandare(scor)
+            recomandare = determine_recommendation(scor)
 
 
 
@@ -361,13 +363,13 @@ def nivel_candidat(request: Request, nume:str):
 
         if candidat["nume"].lower() == nume.lower():
 
-            scor = calculeaza_scor(
+            scor = calculate_score(
                 candidat["experienta"],
                 candidat["performanta"],
                 candidat["certificari"]
             )
 
-            nivel = determina_nivel(scor)
+            nivel = determine_level(scor)
 
             return {
                 "nivel": nivel,
@@ -426,7 +428,7 @@ def statistici(request: Request):
     for candidat in candidati:
 
 
-        scor = calculeaza_scor(
+        scor = calculate_score(
 
             candidat["experienta"],
 
@@ -437,7 +439,7 @@ def statistici(request: Request):
         )
 
 
-        nivel = determina_nivel(scor)
+        nivel = determine_level(scor)
 
 
 
@@ -517,17 +519,17 @@ def raport_candidat(request: Request, nume:str):
         if candidat["nume"].lower() == nume.lower():
 
 
-            scor = calculeaza_scor(
+            scor = calculate_score(
                 candidat["experienta"],
                 candidat["performanta"],
                 candidat["certificari"]
             )
 
 
-            nivel = determina_nivel(scor)
+            nivel = determine_level(scor)
 
 
-            recomandare = determina_recomandare(scor)
+            recomandare = determine_recommendation(scor)
 
 
             raport = f"""
@@ -625,17 +627,17 @@ def reevaluare_candidat(request: Request, nume:str, date:dict):
             candidat["certificari"] = date["certificari"]
 
 
-            scor = calculeaza_scor(
+            scor = calculate_score(
                 date["experienta"],
                 date["performanta"],
                 date["certificari"]
             )
 
 
-            nivel = determina_nivel(scor)
+            nivel = determine_level(scor)
 
 
-            recomandare = determina_recomandare(scor)
+            recomandare = determine_recommendation(scor)
 
 
             adauga_evaluare(
@@ -762,16 +764,16 @@ def raport_pdf(request: Request, nume:str):
 
             else:
 
-                scor = calculeaza_scor(
+                scor = calculate_score(
                     candidat["experienta"],
                     candidat["performanta"],
                     candidat["certificari"]
                 )
 
 
-                nivel = determina_nivel(scor)
+                nivel = determine_level(scor)
 
-                recomandare = determina_recomandare(scor)
+                recomandare = determine_recommendation(scor)
 
 
 
@@ -861,4 +863,30 @@ def raport_pdf(request: Request, nume:str):
 
     return {
         "eroare":"Candidat negasit"
+    }
+
+@app.get("/explanation/{nume}")
+def get_score_explanation(request: Request, nume: str):
+
+    candidates = incarca_candidati(get_user(request))
+
+
+    for candidate in candidates:
+
+
+        if candidate["nume"].lower() == nume.lower():
+
+
+            return {
+
+                "explanation":
+                explain_score(candidate)
+
+            }
+
+
+    return {
+
+        "error":"Candidate not found"
+
     }

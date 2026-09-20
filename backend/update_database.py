@@ -1,5 +1,5 @@
 from database import incarca_candidati, salveaza_candidati
-from scoring import calculeaza_scor, determina_nivel, determina_recomandare
+from scoring import calculate_score, determine_level, determine_recommendation
 
 
 candidati = incarca_candidati()
@@ -11,26 +11,26 @@ for candidat in candidati:
     if "istoric" not in candidat or len(candidat["istoric"]) == 0:
 
 
-        scor = calculeaza_scor(
+        score = calculate_score(
             candidat["experienta"],
             candidat["performanta"],
             candidat["certificari"]
         )
 
 
-        nivel = determina_nivel(scor)
+        level = determine_level(score)
 
 
-        recomandare = determina_recomandare(scor)
+        recommendation = determine_recommendation(score)
 
 
 
         candidat["istoric"]=[
 
             {
-                "scor":scor,
-                "nivel":nivel,
-                "recomandare":recomandare
+                "scor":score,
+                "nivel":level,
+                "recomandare":recommendation
             }
 
         ]
